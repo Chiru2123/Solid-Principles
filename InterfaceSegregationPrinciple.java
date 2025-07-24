@@ -1,25 +1,18 @@
-interface Printer {
+interface Printable {
     void print();
 }
 
-interface Scanner {
+interface Scannable {
     void scan();
 }
 
-class MultiFunctionPrinter implements Printer, Scanner {
+class InterfaceSegregationPrinciple implements Printable {
     public void print() {
-        System.out.println("Printing...");
+        System.out.println("Printing document...");
     }
 
-    public void scan() {
-        System.out.println("Scanning...");
-    }
-}
-
-public class InterfaceSegregationPrinciple {
     public static void main(String[] args) {
-        MultiFunctionPrinter device = new MultiFunctionPrinter();
-        device.print();
-        device.scan();
+        InterfaceSegregationPrinciple printer = new InterfaceSegregationPrinciple();
+        printer.print();
     }
 }
