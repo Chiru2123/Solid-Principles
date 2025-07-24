@@ -1,43 +1,27 @@
-package com.rk.solid;
-
-
-//closed for modifications
-interface PaymentMethod {
-	void pay();
+class OpenClosedPrinciple {
+    public void makePayment(double amount) {
+        System.out.println("Paid ₹" + amount + " using Generic Method.");
+    }
 }
 
-class creditCard implements PaymentMethod {
-
-	@Override
-	public void pay() {
-		System.out.println("process CreditCard Payment");
-	}
-
-}
-//this new features
-class debitCard implements PaymentMethod
-{
-
-	@Override
-	public void pay() {
-		System.out.println("process debitCard Payment");
-
-	}
-
+class DebitCardPayment extends OpenClosedPrinciple {
+    @Override
+    public void makePayment(double amount) {
+        System.out.println("Paid ₹" + amount + " using Debit Card.");
+    }
 }
 
-class Processor {
-	void Process(PaymentMethod paymentMethod) {
-		paymentMethod.pay();
-	}
-}
+class NetBankingPayment extends OpenClosedPrinciple {
+    @Override
+    public void makePayment(double amount) {
+        System.out.println("Paid ₹" + amount + " using Net Banking.");
+    }
 
-public class Open_Close_principal {
+    public static void main(String[] args) {
+        OpenClosedPrinciple debit = new DebitCardPayment();
+        debit.makePayment(1500);
 
-	public static void main(String[] args) {
-		Processor p = new Processor();
-		p.Process(new creditCard());
-		p.Process(new debitCard());
-	}
-
+        OpenClosedPrinciple netBanking = new NetBankingPayment();
+        netBanking.makePayment(3000);
+    }
 }
