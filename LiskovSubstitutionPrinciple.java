@@ -1,14 +1,25 @@
-class Bird {
-    void fly() {
-        System.out.println("Bird is flying...");
+class LiskovSubstitutionPrinciple {
+    public void startTransport() {
+        System.out.println("Starting generic transport...");
     }
 }
 
-class Sparrow extends Bird {}
+class Bus extends LiskovSubstitutionPrinciple {
+    public void startTransport() {
+        System.out.println("Bus is starting on highway...");
+    }
+}
 
-public class LiskovSubstitutionPrinciple {
+class Train extends LiskovSubstitutionPrinciple {
+    public void startTransport() {
+        System.out.println("Train is starting on track...");
+    }
+
     public static void main(String[] args) {
-        Bird bird = new Sparrow();  // Substitution
-        bird.fly();
+        LiskovSubstitutionPrinciple bus = new Bus();
+        bus.startTransport();
+
+        LiskovSubstitutionPrinciple train = new Train();
+        train.startTransport();
     }
 }
