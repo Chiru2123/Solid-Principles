@@ -1,29 +1,27 @@
-interface Keyboard {
-    void type();
+interface Notifier {
+    void sendNotification(String message);
 }
 
-class WiredKeyboard implements Keyboard {
-    public void type() {
-        System.out.println("Typing using Wired Keyboard...");
+class SmsNotifier implements Notifier {
+    public void sendNotification(String message) {
+        System.out.println("SMS: " + message);
     }
 }
 
-class Computer {
-    private Keyboard keyboard;
+class DependencyInversionPrinciple {
+    private Notifier notifier;
 
-    Computer(Keyboard keyboard) {
-        this.keyboard = keyboard;
+    public DependencyInversionPrinciple(Notifier notifier) {
+        this.notifier = notifier;
     }
 
-    void useKeyboard() {
-        keyboard.type();
+    public void alertUser() {
+        notifier.sendNotification("Your OTP is 123456");
     }
-}
 
-public class DependencyInversionPrinciple {
     public static void main(String[] args) {
-        Keyboard kb = new WiredKeyboard();
-        Computer comp = new Computer(kb);
-        comp.useKeyboard();
+        Notifier sms = new SmsNotifier();
+        DependencyInversionPrinciple alert = new DependencyInversionPrinciple(sms);
+        alert.alertUser();
     }
 }
